@@ -16,7 +16,7 @@ app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
 const callback = () => {
-  app.listen(5000, () => console.log(`App is running on port ${port}`));
+  app.listen(port, () => console.log(`App is running on port ${port}`));
 };
 
 // Middlewares

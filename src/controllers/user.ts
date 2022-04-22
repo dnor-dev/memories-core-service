@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 export const getUsers = async (req: any, res: any) => {
   const Users = await User.find();

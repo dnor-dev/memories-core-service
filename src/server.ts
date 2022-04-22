@@ -14,6 +14,10 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
+app.get("/", (req: any, res: any) => {
+  res.status(200).json("Go to the posts route oga!");
+});
+
 // Routes
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);

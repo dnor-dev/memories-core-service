@@ -5,9 +5,10 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-export const getUsers = async (req: any, res: any) => {
-  const Users = await User.find();
-  res.status(200).json(Users);
+export const getUser = async (req: any, res: any) => {
+  const { userId } = req;
+  const user = await User.findById(userId);
+  res.status(200).json(user);
 };
 
 export const signin = async (req: any, res: any) => {

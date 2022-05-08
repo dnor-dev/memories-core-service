@@ -10,7 +10,9 @@ dotenv.config();
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+app.use(cors());
+
+const port = process.env.PORT || 8000;
 
 app.use(express.json());
 
@@ -34,7 +36,6 @@ app.use(
     extended: true,
   }),
 );
-app.use(cors);
 
 // DB connection
 dbConnect(callback);

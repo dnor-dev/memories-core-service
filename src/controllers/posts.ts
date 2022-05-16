@@ -1,5 +1,6 @@
 import PostMessage from "../models/postMessage";
 import mongoose from "mongoose";
+import User from "../models/user";
 
 export const getPosts = async (req: any, res: any) => {
   const { page } = req.query;
@@ -56,9 +57,10 @@ export const createPosts = async (req: any, res: any) => {
   const { body, userId } = req;
 
   try {
+    const user = await User.findById(userId);
     const newPost = new PostMessage({
       ...body,
-      creator: userId,
+      creator: user.name,
       createdAt: new Date().toISOString(),
     });
     await newPost.save();

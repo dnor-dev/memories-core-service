@@ -3,25 +3,33 @@ import mongoose from "mongoose";
 import User from "../models/user";
 
 export const getPosts = async (req: any, res: any) => {
-  const { page } = req.query;
+  // Pagination
+  // const { page } = req.query;
+
+  // try {
+  //   const LIMIT = 6;
+  //   const startIndex = (Number(page) - 1) * LIMIT;
+  //   const total = await PostMessage.countDocuments({});
+
+  //   const posts = await PostMessage.find()
+  //     .sort({ _id: -1 })
+  //     .limit(LIMIT)
+  //     .skip(startIndex);
+  //   res.status(200).json({
+  //     data: posts,
+  //     currentPage: Number(page),
+  //     numberOfPages: Math.ceil(total / LIMIT),
+  //     total,
+  //   });
+  // } catch (error) {
+  //   res.status(404).json({ message: error.message });
+  // }
 
   try {
-    const LIMIT = 6;
-    const startIndex = (Number(page) - 1) * LIMIT;
-    const total = await PostMessage.countDocuments({});
-
-    const posts = await PostMessage.find()
-      .sort({ _id: -1 })
-      .limit(LIMIT)
-      .skip(startIndex);
-    res.status(200).json({
-      data: posts,
-      currentPage: Number(page),
-      numberOfPages: Math.ceil(total / LIMIT),
-      total,
-    });
+    const posts = await PostMessage.find().sort({ _id: -1 });
+    res.status(200).json({ data: posts });
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
